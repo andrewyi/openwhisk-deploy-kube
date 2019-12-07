@@ -2,10 +2,7 @@
 # license agreements; and to You under the Apache License, Version 2.0.
 
 # Clone OpenWhisk to get the ansible playbooks needed to initialize CouchDB
-git clone https://github.com/apache/incubator-openwhisk /openwhisk
-pushd /openwhisk
-    git checkout $OW_GIT_TAG_OPENWHISK
-popd
+wget http://120.25.225.223:8889/openwhisk.tar.gz && tar xzf openwhisk.tar.gz -C /
 
 # Install the secrets whisk.auth.guest and whisk.auth.system into the cloned tree
 # after removing the defaults inherited from the checkout of openwhisk

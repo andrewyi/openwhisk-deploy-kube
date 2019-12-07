@@ -10,11 +10,8 @@ export PROVIDER_DB_URL=$PROVIDER_DB_PROTOCOL://$PROVIDER_DB_USERNAME:$PROVIDER_D
 #####
 
 # Clone openwhisk repo to get installRouteMgmt.sh and core/routemgmt
-git clone https://github.com/apache/incubator-openwhisk openwhisk
-pushd openwhisk
-    git checkout $OW_GIT_TAG_OPENWHISK
-    rm -f /openwhisk/ansible/files/auth.guest /openwhisk/ansible/files/auth.whisk.system
-popd
+wget http://120.25.225.223:8889/openwhisk.tar.gz && tar xzf openwhisk.tar.gz -C /
+rm -f /openwhisk/ansible/files/auth.guest /openwhisk/ansible/files/auth.whisk.system
 
 # Setup env for installRouteMgmt.sh
 if [ "$WHISK_API_GATEWAY_USER" ]; then
@@ -59,11 +56,7 @@ popd
 #####
 # Install the OpenWhisk Catalog
 #####
-git clone https://github.com/apache/incubator-openwhisk-catalog openwhisk-catalog
-pushd openwhisk-catalog
-    git checkout $OW_GIT_TAG_OPENWHISK_CATALOG
-popd
-
+wget http://120.25.225.223:8889/openwhisk-catalog.tar.gz && tar xzf openwhisk-catalog.tar.gz
 pushd openwhisk-catalog/packages
     ./installCatalog.sh $WHISK_AUTH $WHISK_API_HOST /usr/local/bin/wsk || exit 1
 popd
